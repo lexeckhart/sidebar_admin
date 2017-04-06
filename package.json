@@ -1,0 +1,26 @@
+{
+  "name": "sidebar_menu",
+  "version": "1.0.0",
+  "description": "A simple, resposive sidebar menu",
+  "authors": [
+    "Alexander Eckhart <alexander.eckhart@chateaunoir.ro>"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lexeckhart/sidebar_admin.git"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-clean-css": "^3",
+    "gulp-concat": "^2.6.0",
+    "gulp-util": "^3.0.7",
+    "gulp-jshint": "^2.0.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-sass-lint": "^1.3.2",
+    "gulp-uglify": ">2.8.0"
+  },
+  "private": false,
+  "license": "MIT"
+}
