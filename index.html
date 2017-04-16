@@ -9,10 +9,99 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/6.0.0/normalize.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="./dist/css/demo-utilities.min.css">
-        <link rel="stylesheet" href="./dist/css/sidebar_menu.min.css">
+        <link rel="stylesheet" href="./dist/css/sidebar-menu.min.css">
     </head>
     <body>
-        <p>Seems to be working</p>
-        <script src="./dist/js/sidebar_menu.min.js"></script>
+        <div class="main-container-outer">
+            <div class="main-container-inner">
+                <div class="sidebar" id="sidebar">
+                    <div class="sidebar-outer">
+                        <ul class="sidebar-inner">
+                            <li class="sidebar-item">
+                                <a href="#">
+                                    <i class="sidebar-item-icon fa fa-asterisk"></i>
+                                    <span class="sidebar-item-text">Dashboard</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="#">
+                                    <i class="sidebar-item-icon fa fa-file-o"></i>
+                                    <span class="sidebar-item-text">Reports</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item sidebar-item-has-children">
+                                <a href="#">
+                                    <i class="sidebar-item-icon fa fa-registered"></i>
+                                    <span class="sidebar-item-text">Posts</span>
+                                </a>
+                                <ul class="sidebar-item-submenu">
+                                    <li class="sidebar-item">
+                                        <a href="#">
+                                            <i class="sidebar-item-icon fa fa-angle-double-right"></i>
+                                            <span class="sidebar-item-text">New post</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-item">
+                                        <a href="#">
+                                            <i class="sidebar-item-icon fa fa-angle-double-right"></i>
+                                            <span class="sidebar-item-text">Posts list</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="sidebar-item sidebar-item-has-children">
+                                <a href="#">
+                                    <i class="sidebar-item-icon fa fa-bookmark"></i>
+                                    <span class="sidebar-item-text">Categories</span>
+                                </a>
+                                <ul class="sidebar-item-submenu">
+                                    <li class="sidebar-item">
+                                        <a href="#">
+                                            <i class="sidebar-item-icon fa fa-angle-double-right"></i>
+                                            <span class="sidebar-item-text">New category</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-item">
+                                        <a href="#">
+                                            <i class="sidebar-item-icon fa fa-angle-double-right"></i>
+                                            <span class="sidebar-item-text">Categories list</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="#">
+                                    <i class="sidebar-item-icon fa fa-calendar-o"></i>
+                                    <span class="sidebar-item-text">Campaigns</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="#">
+                                    <i class="sidebar-item-icon fa fa-rocket"></i>
+                                    <span class="sidebar-item-text">Users</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="#">
+                                    <i class="sidebar-item-icon fa fa-comments"></i>
+                                    <span class="sidebar-item-text">Moderation</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="#">
+                                    <i class="sidebar-item-icon fa fa-sliders"></i>
+                                    <span class="sidebar-item-text">Settings</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="page-content">
+                </div>
+                <div class="footer">
+                </div>
+            </div>
+        </div>
+        <script src="./dist/js/sidebar-menu.min.js"></script>
     </body>
 </html>

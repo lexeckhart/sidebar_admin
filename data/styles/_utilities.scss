@@ -1,0 +1,29 @@
+// Sidebar needs this particular environment
+.main-container-outer {
+    .main-container-inner {
+        display:block;
+        min-height: 100%;
+        padding: 0;
+        margin: 0;
+        .page-content {
+            position: relative;
+            margin: 0;
+            padding: 15px;
+        }
+    }
+}
+
+// What happens when there's a navbar at a top.
+.navbar + .main-container-inner {
+    .sidebar {
+        top: $navbar-height;
+        &:before {
+            top: $navbar-height;
+        }
+    }
+}
+
+// What happens when there's a fixed navbar at the top.
+.navbar-fixed-top + .main-container-inner {
+    padding-top: $navbar-height;
+}
