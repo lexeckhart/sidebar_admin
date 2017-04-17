@@ -10,6 +10,7 @@
     }
 }
 .page-content {
+    transition: margin .2s ease-in-out;
     position: relative;
     margin: 0;
     padding: 15px;

@@ -176,14 +176,14 @@ h4, .h4 { font-size: 1.428em; }
 	min-height: $navbar-height;
 	margin-bottom: 20px;
 	border: 1px solid transparent;
-	@include clearfix;
+	@include clearfix();
 	background-color: #fff;
 	.navbar-text {
 		margin-top: ($navbar-height - 20px) / 2;
 		margin-bottom: ($navbar-height - 20px) / 2;
 		color: #444;
 		line-height: 20px;
-		display:block;
+		display: inline-block;
 	}
 }
 .navbar-static-top {
@@ -205,6 +205,14 @@ h4, .h4 { font-size: 1.428em; }
 .navbar-fixed-bottom {
 	bottom: 0;
 	border-width: 1px 0 0;
+}
+
+///* Helpers
+.pull-left {
+	float: left;
+}
+.pull-right {
+	float: right;
 }
 
 ///* Custom Paddings */

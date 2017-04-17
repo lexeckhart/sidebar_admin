@@ -26,19 +26,34 @@
         trigger: '.toggle-sidebar',             // element that toggles the sidebar
         target:  '.sidebar',                    // wrapper that holds the sidebar  
         sidebar: {
-            item: 'sidebar-item-has-children',  //
-            itemActive: 'sidebar-item-active',  //
-            itemBtn: 'a'         //
+            visibleClass: 'sidebar-visible',
+            item: '.sidebar-item-has-children',  //
+            itemActiveClass: 'sidebar-item-active',  //
+            itemBtn: 'a'                        //
         },
 		onShow : function() { return false; },
 		onHide : function() { return false; }
 	};
 
     Sidebar.prototype._init = function() {
-        var target = this.options.target, 
-            trigger = this.options.trigger;
+        var _self = this,
+            triggerElem = document.querySelectorAll(this.options.trigger),
+            targetElem = document.querySelector(this.options.target);
+        
+        //var type =  (trigger && typeof trigger === 'string' ) ? 'string' : 'object';
 
-            this._initEvents(target);
+            if (targetElem) {
+                triggerElem.forEach(function(trig){
+                    trig.addEventListener('click', function(){
+                        if(targetElem.classList.contains(_self.options.sidebar.visibleClass)){
+                            _self.hide();
+                        } else {
+                            _self.show();
+                        }
+                    });
+                });
+                this._initEvents(this.options.target);
+            }
     }
 
     Sidebar.prototype._initEvents = function(elem) {
@@ -46,8 +61,8 @@
         var sidebarWrapper = document.querySelector(elem);
 
         if (sidebarWrapper){
-            var si = document.querySelectorAll('.'+_self.options.sidebar.item),
-                siac = _self.options.sidebar.itemActive,
+            var si = document.querySelectorAll(_self.options.sidebar.item),
+                siac = _self.options.sidebar.itemActiveClass,
                 sibtn = _self.options.sidebar.itemBtn,
                 el,ael,v;
 
@@ -73,6 +88,8 @@
     }
 
     Sidebar.prototype.show = function() {
+        var targetElem = document.querySelector(this.options.target);
+        targetElem.classList.add(this.options.sidebar.visibleClass);
 
         if (typeof this.options.onShow === 'function') {
             this.options.onShow();
@@ -80,6 +97,8 @@
     }
 
     Sidebar.prototype.hide = function() {
+        var targetElem = document.querySelector(this.options.target);
+        targetElem.classList.remove(this.options.sidebar.visibleClass);
 
         if (typeof this.options.onHide === 'function') {
             this.options.onHide();
@@ -91,5 +110,3 @@
 
     window.Sidebar = Sidebar;
 })( window );
-
-new Sidebar();

@@ -19,6 +19,7 @@ $sidebar-border-color: transparent;
     display: block;
     overflow: hidden;
     transform: translateX(-100%);
+    transition: transform .2s ease-in-out;
     width: 100%;
     box-shadow: 0px 2px 15px -5px rgba(0,0,0,.2);
 
@@ -62,7 +63,6 @@ $sidebar-border-color: transparent;
     }
 }
 
-// The styles for the clickable item
 .sidebar-item {
     display: block;
     padding: 0;
@@ -140,7 +140,6 @@ $sidebar-border-color: transparent;
         }
     }
 }
-
 
 .sidebar-item-submenu {
     margin: 0;
