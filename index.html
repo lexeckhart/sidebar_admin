@@ -6,15 +6,21 @@
         <title>Sidebar menu | Lex Eckhart</title>
         <meta name="description" content="This is the demo page for a simple sidebar menu">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/6.0.0/normalize.min.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <!-- You will need a font-icon library to display some icons (if you want to) -->
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <!-- -->
         <link rel="stylesheet" href="./dist/css/demo-utilities.min.css">
         <link rel="stylesheet" href="./dist/css/sidebar-menu.min.css">
     </head>
     <body>
         <div class="main-container-outer">
+            <nav class="navbar navbar-static-top navbar-fixed-top">
+                <div class="container-fluid">
+                    <h1 class="navbar-text h4">Sidebar menu demo</h1>
+                </div>
+            </nav>
             <div class="main-container-inner">
-                <div class="sidebar" id="sidebar">
+                <div class="sidebar sidebar-visible" id="sidebar">
                     <div class="sidebar-outer">
                         <ul class="sidebar-inner">
                             <li class="sidebar-item">
@@ -31,7 +37,7 @@
                             </li>
                             <li class="sidebar-item sidebar-item-has-children">
                                 <a href="#">
-                                    <i class="sidebar-item-icon fa fa-registered"></i>
+                                    <i class="sidebar-item-icon fa fa-file"></i>
                                     <span class="sidebar-item-text">Posts</span>
                                 </a>
                                 <ul class="sidebar-item-submenu">
@@ -69,6 +75,26 @@
                                     </li>
                                 </ul>
                             </li>
+                            <li class="sidebar-item sidebar-item-has-children">
+                                <a href="#">
+                                    <i class="sidebar-item-icon fa fa-bookmark"></i>
+                                    <span class="sidebar-item-text">Multimedia</span>
+                                </a>
+                                <ul class="sidebar-item-submenu">
+                                    <li class="sidebar-item">
+                                        <a href="#">
+                                            <i class="sidebar-item-icon fa fa-angle-double-right"></i>
+                                            <span class="sidebar-item-text">New multimedia item</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-item">
+                                        <a href="#">
+                                            <i class="sidebar-item-icon fa fa-angle-double-right"></i>
+                                            <span class="sidebar-item-text">Multimedia library</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
                             <li class="sidebar-item">
                                 <a href="#">
                                     <i class="sidebar-item-icon fa fa-calendar-o"></i>
@@ -97,6 +123,26 @@
                     </div>
                 </div>
                 <div class="page-content">
+                    <div class="container-fluid pad-sep-lg">
+                        <h2>Standard sidebar</h2>
+                        <hr>
+                        <div class="mrg-sep-md"></div>
+                        <div class="well">
+                            <p class="caption">Here's how to use it:</p>
+                        </div>
+                        <h2>With or without navbar</h2>
+                        <hr>
+                        <div class="mrg-sep-md"></div>
+                        <div class="well">
+                            <p class="caption">Here's how to use it:</p>
+                        </div>
+                        <h2>Hidden or nah, it's alright</h2>
+                        <hr>
+                        <div class="mrg-sep-md"></div>
+                        <div class="well">
+                            <p class="caption">Here's how to use it:</p>
+                        </div>
+                    </div>
                 </div>
                 <div class="footer">
                 </div>
