@@ -1,3 +1,6 @@
+@import "variables";
+@import "mixins";
+
 ///* Basic Reset
 html {
 	box-sizing: border-box;
@@ -15,7 +18,7 @@ html, body {
     height: 100%;
 }
 *, *:before, *:after {
-	box-sizing: inherit;
+	box-sizing: border-box;
 }
 
 html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code,
@@ -133,12 +136,15 @@ h3, .h3 { font-size: 1.357em; }
 h4, .h4 { font-size: 1.428em; }
 
 ///* Containers
-.container {
+.container-fluid {
 	margin-right: auto;
 	margin-left: auto;
 	padding-left:  15px;
 	padding-right: 15px;
-
+	width: 100%;
+}
+.container {
+	@extend .container-fluid;
 	@media (min-width: 768px) {
 		width: 740px;
 	}
@@ -150,6 +156,7 @@ h4, .h4 { font-size: 1.428em; }
 	}
 }
 
+///* Basic Panel and Well
 .panel,.well {
 	padding: 15px 15px;
 	margin-bottom: 20px;
@@ -161,6 +168,43 @@ h4, .h4 { font-size: 1.428em; }
 
 .well {
 	background-color: #eaeaea;
+}
+
+///* Basic navbar
+.navbar {
+	position: relative;
+	min-height: $navbar-height;
+	margin-bottom: 20px;
+	border: 1px solid transparent;
+	@include clearfix;
+	background-color: #fff;
+	.navbar-text {
+		margin-top: ($navbar-height - 20px) / 2;
+		margin-bottom: ($navbar-height - 20px) / 2;
+		color: #444;
+		line-height: 20px;
+		display:block;
+	}
+}
+.navbar-static-top {
+	z-index: 1000;
+	border-width: 0 0 1px;
+}
+.navbar-fixed-top,
+.navbar-fixed-bottom {
+	position: fixed;
+	right: 0;
+	left: 0;
+	border-color: #eee;
+	margin: 0;
+}
+.navbar-fixed-top {
+	top: 0;
+	border-width: 0 0 1px;
+}
+.navbar-fixed-bottom {
+	bottom: 0;
+	border-width: 1px 0 0;
 }
 
 ///* Custom Paddings */
