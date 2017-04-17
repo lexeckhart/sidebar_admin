@@ -1,7 +1,8 @@
 $sidebar-width: 200px;
 $sidebar-bg: #fff;
-$sidebar-active-bg: #444;
-$sidebar-active-color: #fff;
+$sidebar-color: #777;
+$sidebar-active-bg: #e0e0e0;
+$sidebar-active-color: #222;
 $sidebar-border-color: transparent;
 
 
@@ -15,8 +16,8 @@ $sidebar-border-color: transparent;
     padding-right: 0;
     background-color: $sidebar-bg;
     z-index: 100;
-    display:block;
-    overflow:hidden;
+    display: block;
+    overflow: hidden;
     transform: translateX(-100%);
     width: 100%;
     box-shadow: 0px 2px 15px -5px rgba(0,0,0,.2);
@@ -35,19 +36,19 @@ $sidebar-border-color: transparent;
     }
 
     .sidebar-outer {
-        display:block;
+        display: block;
         min-width: calc(100% + 30px);
-        overflow:hidden;
-        overflow-y:scroll;
+        overflow: hidden;
+        overflow-y: scroll;
         position: relative;
         z-index: 3;
-        height:100vh;
+        height: 100vh;
         
         .sidebar-inner {
             margin: 0;
             padding: 0;
             list-style: none;
-            position:relative;      
+            position: relative;      
             display:block;
             width: calc(100% - 30px);
             
@@ -59,89 +60,99 @@ $sidebar-border-color: transparent;
             }
         }
     }
+}
 
-    .sidebar-item {
-         display: block;
-         position: relative;
-         padding: 0;
-         margin: 0;
-         border-style: solid;
-         border-width: 1px 0 0;
-         border-color: darken($sidebar-bg, 2%);
+// The styles for the clickable item
+.sidebar-item {
+    display: block;
+    padding: 0;
+    margin: 0;
+    border-style: solid;
+    border-width: 1px 0 0;
+    border-color: darken($sidebar-bg, 2%);
 
-         a {
-            display: block;
+    a,
+    .sidebar-item-container {
+        display: block;
+        min-height: 60px;
+        line-height: 20px;
+        padding: 20px 15px;
+        font-family: inherit;
+        font-size: 14px;
+        position: relative;
+        background-color: $sidebar-bg;
+        color: $sidebar-color;
+        text-decoration: none;
+        @media (min-width: $screen-sm-min) {
             min-height: 50px;
-            line-height: 20px;
-            padding: 15px 40px;
-            font-family: inherit;
-            font-size: 14px;
-            text-decoration: none;
-            background-color: $sidebar-bg;
-            color: #444;
-            position:relative;
+            padding: 15px 15px;
+        }
+    }
+    a {
+        padding-left: 40px;
+        padding-right: 40px;
+        .sidebar-item-icon {
+            display: inline-block;
+            position: absolute;
+            top: 50%;
+            left: 15px;
+            transform: translateY(-50%);
+            font-size: 16px;
+        }
 
-            .sidebar-item-icon {
+        &:hover, &:active, &:focus {
+            background-color: darken($sidebar-bg, 5%);
+        }
+    }
+
+    &.sidebar-item-has-children {
+        & > a {
+            &:after {
                 display: inline-block;
                 position: absolute;
-                top:50%;
-                left: 15px;
+                top: 50%;
+                right: 15px;
                 transform: translateY(-50%);
-                font-size: 16px;
+                font-size: 20px;
+                font-family: FontAwesome;
+                content: '\f107';
             }
-
-            &:hover, &:active, &:focus {
-                background-color: darken($sidebar-bg, 5%);
-            }
-         }
-
-         &.sidebar-item-has-children {
+        }
+        &.sidebar-item-active {
             & > a {
-               &:after {
-                  display: inline-block;
-                  position:absolute;
-                  top:50%;
-                  right:15px;
-                  transform: translateY(-50%);
-                  font-size: 20px;
-                  font-family: FontAwesome;
-                  content: '\f107';
-               }
-            }
-         }
-
-         &.sidebar-item-active {
-            > a {
-                background-color: $sidebar-active-bg;
-                color: #fff;
-                &:hover, &:active, &:focus {
-                    background-color: darken($sidebar-active-bg, 5%);
+                &:after {
+                    content: '\f106';
                 }
             }
-            &.sidebar-item-has-children {
-                & > a {
-                    &:after {
-                        content: '\f106';
-                    }
-                }
-            }
-            .sidebar-item-submenu {
-                display:block;
-            }
-         }
+        }
     }
-    .sidebar-item-submenu {
-        margin: 0;
-        padding: 0;
-        display: none;
 
-        .sidebar-item {
-            border-color: darken($sidebar-bg, 5%);
-            a {
-                background-color: darken($sidebar-bg, 5%);
-                &:hover, &:active, &:focus {
-                    background-color: darken($sidebar-bg, 10%);
-                }
+    &.sidebar-item-active {
+        > a {
+            background-color: $sidebar-active-bg;
+            color: $sidebar-active-color;
+            &:hover, &:active, &:focus {
+                background-color: darken($sidebar-active-bg, 5%);
+            }
+        }
+        .sidebar-item-submenu {
+            display: block;
+        }
+    }
+}
+
+
+.sidebar-item-submenu {
+    margin: 0;
+    padding: 0;
+    display: none;
+
+    .sidebar-item {
+        border-color: darken($sidebar-bg, 5%);
+        a {
+            background-color: darken($sidebar-bg, 5%);
+            &:hover, &:active, &:focus {
+                background-color: darken($sidebar-bg, 10%);
             }
         }
     }

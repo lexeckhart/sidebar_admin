@@ -28,7 +28,7 @@
         sidebar: {
             item: 'sidebar-item-has-children',  //
             itemActive: 'sidebar-item-active',  //
-            itemBtn: 'a'                        //
+            itemBtn: 'a'         //
         },
 		onShow : function() { return false; },
 		onHide : function() { return false; }
