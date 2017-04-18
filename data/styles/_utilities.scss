@@ -16,16 +16,6 @@
     padding: 15px;
 }
 
-// What happens when there's a navbar at a top.
-.navbar + .main-container-inner {
-    .sidebar {
-        top: $navbar-height;
-        .sidebar-outer {
-            height: calc(100vh - #{$navbar-height});
-        }
-    }
-}
-
 // What happens when there's a fixed navbar at the top.
 .navbar-fixed-top + .main-container-inner {
     padding-top: $navbar-height;

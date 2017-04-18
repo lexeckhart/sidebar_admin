@@ -177,11 +177,11 @@ h4, .h4 { font-size: 1.428em; }
 	margin-bottom: 20px;
 	border: 1px solid transparent;
 	@include clearfix();
-	background-color: #fff;
+	background-color: #5F84E9;
 	.navbar-text {
 		margin-top: ($navbar-height - 20px) / 2;
 		margin-bottom: ($navbar-height - 20px) / 2;
-		color: #444;
+		color: #fff;
 		line-height: 20px;
 		display: inline-block;
 	}
@@ -195,7 +195,7 @@ h4, .h4 { font-size: 1.428em; }
 	position: fixed;
 	right: 0;
 	left: 0;
-	border-color: #eee;
+	border-color: darken(#5F84E9, 5%);
 	margin: 0;
 }
 .navbar-fixed-top {

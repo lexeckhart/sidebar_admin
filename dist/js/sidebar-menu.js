@@ -43,18 +43,18 @@
         
         //var type =  (trigger && typeof trigger === 'string' ) ? 'string' : 'object';
 
-            if (targetElem) {
-                triggerElem.forEach(function(trig){
-                    trig.addEventListener('click', function(){
-                        if(targetElem.classList.contains(_self.options.sidebar.visibleClass)){
-                            _self.hide();
-                        } else {
-                            _self.show();
-                        }
-                    });
+        if (targetElem) {
+            triggerElem.forEach(function(trig){
+                trig.addEventListener('click', function(){
+                    if(targetElem.classList.contains(_self.options.sidebar.visibleClass)){
+                        _self.hide();
+                    } else {
+                        _self.show();
+                    }
                 });
-                this._initEvents(this.options.target);
-            }
+            });
+            this._initEvents(this.options.target);
+        }
     }
 
     Sidebar.prototype._initEvents = function(elem) {
