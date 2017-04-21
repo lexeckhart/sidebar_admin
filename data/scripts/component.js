@@ -1,5 +1,3 @@
-
-
 (function( window ) {
 
 	'use strict';
@@ -26,10 +24,10 @@
         trigger: '.toggle-sidebar',             // element that toggles the sidebar
         target:  '.sidebar',                    // wrapper that holds the sidebar  
         sidebar: {
-            visibleClass: 'sidebar-visible',
-            item: '.sidebar-item-has-children',  //
-            itemActiveClass: 'sidebar-item-active',  //
-            itemBtn: 'a'                        //
+            visibleClass: 'sidebar-visible',            //
+            item: '.sidebar-item-has-children',         //
+            itemActiveClass: 'sidebar-item-active',     //
+            itemBtn: '.sidebar-item-has-children > a'   //
         },
 		onShow : function() { return false; },
 		onHide : function() { return false; }
@@ -37,12 +35,12 @@
 
     Sidebar.prototype._init = function() {
         var _self = this,
+            elements,
             triggerElem = document.querySelectorAll(this.options.trigger),
-            targetElem = document.querySelector(this.options.target);
-        
-        //var type =  (trigger && typeof trigger === 'string' ) ? 'string' : 'object';
+            targetElem = document.querySelector(this.options.target),
+            sidebarElem = document.querySelector(_self.options.target);
 
-        if (targetElem) {
+        if (targetElem && triggerElem) {
             triggerElem.forEach(function(trig){
                 trig.addEventListener('click', function(){
                     if(targetElem.classList.contains(_self.options.sidebar.visibleClass)){
@@ -52,46 +50,38 @@
                     }
                 });
             });
-            this._initEvents(this.options.target);
         }
-    }
 
-    Sidebar.prototype._initEvents = function(elem) {
-        var _self = this;
-        var sidebarWrapper = document.querySelector(elem);
+        if (sidebarElem) {
+            var closeAllSidebarItems = function(wrapper, element, classToRemove) {
+                elements = wrapper.querySelectorAll('.'+element);
+                elements.forEach(function(element) {
+                    element.classList.remove(classToRemove);
+                });
+            }
 
-        if (sidebarWrapper){
-            var si = document.querySelectorAll(_self.options.sidebar.item),
-                siac = _self.options.sidebar.itemActiveClass,
-                sibtn = _self.options.sidebar.itemBtn,
-                el,ael,v;
+            var toggleSidebarItems = function(wrapper, element, classToToggle){
+                
+                if(element.parentNode.classList.contains(classToToggle)) {
+                    element.parentNode.classList.remove(classToToggle);
+                } else {
+                    closeAllSidebarItems(wrapper, _self.options.sidebar.itemActiveClass, classToToggle);
+                    element.parentNode.classList.add(classToToggle);
+                }
+            }
 
-            si.forEach(function(item) {
-                v = item.querySelector(sibtn);
-                v.addEventListener("click", function(ev){
-                    ev.preventDefault();
-                    el = ev.target.parentNode;
-                    ael = document.querySelector('.'+siac);
-
-                    if (el.classList.contains(siac)){
-                        el.classList.remove(siac);
-                    } else {
-                        if(ael){ael.classList.remove(siac)};
-                        el.classList.add(siac);
-                    }
-                })
+            XXX.handleEvent(sidebarElem, 'click', _self.options.sidebar.itemBtn, function(){
+                toggleSidebarItems(sidebarElem, this, _self.options.sidebar.itemActiveClass);
             });
         }
-    }
-
-    Sidebar.prototype._toggleElem = function() {
+        
     }
 
     Sidebar.prototype.show = function() {
         var targetElem = document.querySelector(this.options.target);
         targetElem.classList.add(this.options.sidebar.visibleClass);
 
-        if (typeof this.options.onShow === 'function') {
+        if (typeof this.options.onShow === 'function'){
             this.options.onShow();
         }
     }
@@ -100,12 +90,9 @@
         var targetElem = document.querySelector(this.options.target);
         targetElem.classList.remove(this.options.sidebar.visibleClass);
 
-        if (typeof this.options.onHide === 'function') {
+        if (typeof this.options.onHide === 'function'){
             this.options.onHide();
         }
-    }
-
-    Sidebar.prototype.destroy = function() {
     }
 
     window.Sidebar = Sidebar;
