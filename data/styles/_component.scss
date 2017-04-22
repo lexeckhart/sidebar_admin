@@ -1,3 +1,4 @@
+// TO DO: Move variables to _variables.scss
 $sidebar-width: 220px;
 $sidebar-bg: #fff;
 $sidebar-color: #555;
@@ -5,6 +6,9 @@ $sidebar-active-bg: #e0e0e0;
 $sidebar-active-color: #222;
 $sidebar-border-color: transparent;
 
+
+// This class goes on body. It applies to ALL sidebars.
+// -----------------------
 .sidebar-is-open {
     @media (max-width: $screen-xs-max) {
         overflow-y: hidden;
@@ -19,6 +23,8 @@ $sidebar-border-color: transparent;
     }
 }
 
+
+// TO DO: Convert to mixin.
 .sidebar {
     width: 100%;
     top: 0px;   
@@ -56,30 +62,14 @@ $sidebar-border-color: transparent;
         }
     }
 
-    .navbar + .main-container-inner & {
-        top: $navbar-height;
-        .sidebar-outer {
-            height: calc(100vh - #{$navbar-height});
-        }
-    }
-
     @media (min-width: $screen-sm-min) {
         width: $sidebar-width;
+
         .sidebar-outer {
             min-width: $sidebar-width + 30px;
+
             .sidebar-inner {
                 width: $sidebar-width;
-            }
-        }
-    }
-}
-
-.sidebar-visible {
-    transform: translateX(0);
-    @media (min-width: $screen-sm-min) {
-        &.sidebar-push-page-content {
-            & + .page-content {
-                margin-left: $sidebar-width;
             }
         }
     }
@@ -93,6 +83,7 @@ $sidebar-border-color: transparent;
     border-width: 1px 0 0;
     border-color: darken($sidebar-bg, 2%);
 
+    // TO DO: convert to single class name
     a,
     .sidebar-item-container {
         display: block;
@@ -160,7 +151,7 @@ $sidebar-border-color: transparent;
                 background-color: darken($sidebar-active-bg, 5%);
             }
         }
-        .sidebar-item-submenu {
+        > .sidebar-item-submenu {
             display: block;
         }
     }
@@ -179,5 +170,27 @@ $sidebar-border-color: transparent;
                 background-color: darken($sidebar-bg, 10%);
             }
         }
+    }
+}
+
+// Modifiers:
+// -----------------------
+.sidebar-visible {
+    &.sidebar {
+        transform: translateX(0);
+        @media (min-width: $screen-sm-min) {
+            &.sidebar-push-page-content {
+                & + .page-content {
+                    margin-left: $sidebar-width;
+                }
+            }
+        }
+    }
+}
+
+.navbar + .main-container-inner .sidebar {
+    top: $navbar-height;
+    .sidebar-outer {
+        height: calc(100vh - #{$navbar-height});
     }
 }

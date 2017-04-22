@@ -54,8 +54,8 @@ var XXX = {
 
     // Sidebar Options
 	Sidebar.prototype.options = {
-        trigger: '.toggle-sidebar',             // element that toggles the sidebar
-        target:  '#sidebar',                    // wrapper that holds the sidebar  
+        trigger: '.toggle-sidebar',                     // TO DO: Add variables for open and close
+        target:  '#sidebar',                            //  
         sidebar: {
             visibleClass: 'sidebar-visible',            //
             item: '.sidebar-item-has-children',         //
@@ -69,12 +69,12 @@ var XXX = {
     Sidebar.prototype._init = function() {
         var _self = this,
             elements,
-            triggerElem = document.querySelectorAll(this.options.trigger),
             targetElem = document.querySelector(this.options.target);
 
         if (targetElem) {
             if (targetElem.classList.contains(_self.options.sidebar.visibleClass)) {
                 _self.isVisible = true;
+                // TO DO: Add sidebar-is-open class to body (General class for all sidebars)
             }
 
             XXX.handleEvent(document, 'click', _self.options.trigger, function(){
@@ -92,12 +92,16 @@ var XXX = {
                 if(element.parentNode.classList.contains(classToToggle)) {
                     element.parentNode.classList.remove(classToToggle);
                 } else {
+                    // TO DO: Take in to consideration sidebar-item nesting
+                    //        Closing all sidebar items blows this option
                     closeAllSidebarItems(wrapper, _self.options.sidebar.itemActiveClass, classToToggle);
                     element.parentNode.classList.add(classToToggle);
                 }
             }
 
             XXX.handleEvent(targetElem, 'click', _self.options.sidebar.itemBtn, function(){
+                // TO DO: handle other events
+                // TO DO: handle disabled items
                 toggleSidebarItems(targetElem, this, _self.options.sidebar.itemActiveClass);
             });
         }
@@ -106,7 +110,9 @@ var XXX = {
 
     Sidebar.prototype.show = function() {
         this.isVisible = true;
+        // TO DO: Add sidebar-is-open class to body
 
+        // TO DO: Clean up this duplicate garbage
         var targetElem = document.querySelector(this.options.target);
         targetElem.classList.add(this.options.sidebar.visibleClass);
 
@@ -117,7 +123,9 @@ var XXX = {
 
     Sidebar.prototype.hide = function() {
         this.isVisible = false;
+        // TO DO: remove sidebar-is-open class to body
 
+        // TO DO: Clean up this duplicate garbage
         var targetElem = document.querySelector(this.options.target);
         targetElem.classList.remove(this.options.sidebar.visibleClass);
 
