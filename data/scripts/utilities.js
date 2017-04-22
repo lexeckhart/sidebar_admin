@@ -2,9 +2,9 @@
 
 var XXX = {
     matchesSelector : Element.prototype.matches
-        ||                Element.prototype.webkitMatchesSelector
-        ||                Element.prototype.mozMatchesSelector
-        ||                Element.prototype.msMatchesSelector
+        ||            Element.prototype.webkitMatchesSelector
+        ||            Element.prototype.mozMatchesSelector
+        ||            Element.prototype.msMatchesSelector
         || function(s) {
             return [].indexOf.call(document.querySelectorAll(s), this) !== -1;
         },

@@ -2,7 +2,6 @@
 
 	'use strict';
 
-	// Extend obj function
 	function extend( a, b ) {
 		for( var key in b ) {
 			if( b.hasOwnProperty( key ) ) {
@@ -12,18 +11,17 @@
 		return a;
 	}
 
-	// Sidebar function
 	function Sidebar( options ) {
 		this.options = extend( {}, this.options );
 		extend( this.options, options );
 		this._init();
 	}
 
-    // Sidebar Options
 	Sidebar.prototype.options = {
-        trigger: '.toggle-sidebar',                     // TO DO: Add variables for open and close
+        trigger: '.toggle-sidebar',                     // TO DO: Add variables for open and close handlers
         target:  '#sidebar',                            //  
         sidebar: {
+            bodyClass: 'sidebar-is-open',
             visibleClass: 'sidebar-visible',            //
             item: '.sidebar-item-has-children',         //
             itemActiveClass: 'sidebar-item-active',     //
@@ -34,18 +32,21 @@
 	};
 
     Sidebar.prototype._init = function() {
-        var _self = this,
-            elements,
-            targetElem = document.querySelector(this.options.target);
+        var _self = this, elements;
+            _self.targetElem = document.querySelector(this.options.target);
 
-        if (targetElem) {
-            if (targetElem.classList.contains(_self.options.sidebar.visibleClass)) {
+        if( _self.targetElem ) {
+            if( _self.targetElem.classList.contains(_self.options.sidebar.visibleClass) ) {
                 _self.isVisible = true;
-                // TO DO: Add sidebar-is-open class to body (General class for all sidebars)
+                document.body.classList.add(_self.options.sidebar.bodyClass);
             }
 
             XXX.handleEvent(document, 'click', _self.options.trigger, function(){
-                _self.isVisible ? _self.hide() : _self.show();
+                if( _self.isVisible ) {
+                    _self.hide();
+                } else {
+                    _self.show();
+                }
             });
 
             var closeAllSidebarItems = function(wrapper, element, classToRemove) {
@@ -56,48 +57,44 @@
             }
 
             var toggleSidebarItems = function(wrapper, element, classToToggle){
-                if(element.parentNode.classList.contains(classToToggle)) {
+                if( element.parentNode.classList.contains(classToToggle) ) {
                     element.parentNode.classList.remove(classToToggle);
                 } else {
-                    // TO DO: Take in to consideration sidebar-item nesting
-                    //        Closing all sidebar items blows this option
+                    // TO DO: Take in to consideration sidebar-item nesting. Closing all sidebar items blows this option
                     closeAllSidebarItems(wrapper, _self.options.sidebar.itemActiveClass, classToToggle);
                     element.parentNode.classList.add(classToToggle);
                 }
             }
 
-            XXX.handleEvent(targetElem, 'click', _self.options.sidebar.itemBtn, function(){
-                // TO DO: handle other events
-                // TO DO: handle disabled items
-                toggleSidebarItems(targetElem, this, _self.options.sidebar.itemActiveClass);
+            XXX.handleEvent(_self.targetElem, 'click', _self.options.sidebar.itemBtn, function(){
+                // TO DO: Handle disabled items, Handle other event types
+                toggleSidebarItems(_self.targetElem, this, _self.options.sidebar.itemActiveClass);
             });
         }
         
     }
 
     Sidebar.prototype.show = function() {
-        this.isVisible = true;
-        // TO DO: Add sidebar-is-open class to body
+        var _self = this;
+            _self.isVisible = true;
 
-        // TO DO: Clean up this duplicate garbage
-        var targetElem = document.querySelector(this.options.target);
-        targetElem.classList.add(this.options.sidebar.visibleClass);
+        document.body.classList.add(_self.options.sidebar.bodyClass);
+        _self.targetElem.classList.add(_self.options.sidebar.visibleClass);
 
-        if (typeof this.options.onShow === 'function'){
-            this.options.onShow();
+        if( typeof _self.options.onShow === 'function' ){
+            _self.options.onShow();
         }
     }
 
     Sidebar.prototype.hide = function() {
-        this.isVisible = false;
-        // TO DO: remove sidebar-is-open class from body
+        var _self = this;
+            _self.isVisible = false;
 
-        // TO DO: Clean up this duplicate garbage
-        var targetElem = document.querySelector(this.options.target);
-        targetElem.classList.remove(this.options.sidebar.visibleClass);
+        document.body.classList.remove(_self.options.sidebar.bodyClass);
+        _self.targetElem.classList.remove(_self.options.sidebar.visibleClass);
 
-        if (typeof this.options.onHide === 'function'){
-            this.options.onHide();
+        if( typeof this.options.onHide === 'function' ){
+            _self.options.onHide();
         }
     }
 
