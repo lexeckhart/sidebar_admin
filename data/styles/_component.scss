@@ -23,15 +23,15 @@ $sidebar-border-color: transparent;
 
 // TO DO: Convert to mixin.
 .sidebar {
-    width: 100%;
-    top: 0px;   
+    position: fixed;
+    top: 0;   
     left: 0;
     bottom: 0;
-    position: fixed;
+    z-index: 100;
+    width: 100%;
     padding-left: 0;
     padding-right: 0;
     background-color: $sidebar-bg;
-    z-index: 100;
     display: block;
     overflow: hidden;
     transform: translateX(-100%);
@@ -45,7 +45,7 @@ $sidebar-border-color: transparent;
         overflow-y: scroll;
         position: relative;
         z-index: 3;
-        height: 100vh;
+        height: 100%;
 
         .sidebar-inner {
             margin: 0;
@@ -69,6 +69,7 @@ $sidebar-border-color: transparent;
         width: $sidebar-width;
 
         .sidebar-outer {
+            height: 100vh;
             min-width: $sidebar-width + 30px;
 
             .sidebar-inner {
@@ -98,10 +99,6 @@ $sidebar-border-color: transparent;
         background-color: $sidebar-bg;
         color: $sidebar-color;
         text-decoration: none;
-        .sidebar-item-icon + .sidebar-item-text {
-            margin-left: 30px;
-            display: block;
-        }
         @media (min-width: $screen-sm-min) {
             min-height: 50px;
             padding: 15px 15px;
@@ -109,17 +106,23 @@ $sidebar-border-color: transparent;
     }
     a.sidebar-item-element {
         padding-right: 40px;
-        .sidebar-item-icon {
-            display: inline-block;
-            position: absolute;
-            top: 50%;
-            left: 15px;
-            transform: translateY(-50%);
-            font-size: 16px;
+        @media (min-width: $screen-sm-min) {
+            &:hover, &:active, &:focus {
+                background-color: darken($sidebar-bg, 5%);
+            }
         }
-
-        &:hover, &:active, &:focus {
-            background-color: darken($sidebar-bg, 5%);
+    }
+    
+    .sidebar-item-icon {
+        display: inline-block;
+        position: absolute;
+        top: 50%;
+        left: 15px;
+        transform: translateY(-50%);
+        font-size: 16px;
+        + .sidebar-item-text {
+            margin-left: 30px;
+            display: block;
         }
     }
 
@@ -149,8 +152,10 @@ $sidebar-border-color: transparent;
         > a {
             background-color: $sidebar-active-bg;
             color: $sidebar-active-color;
-            &:hover, &:active, &:focus {
-                background-color: darken($sidebar-active-bg, 5%);
+            @media (min-width: $screen-sm-min) {
+                &:hover, &:active, &:focus {
+                    background-color: darken($sidebar-active-bg, 5%);
+                }
             }
         }
         > .sidebar-item-submenu {
@@ -168,8 +173,10 @@ $sidebar-border-color: transparent;
         border-color: darken($sidebar-bg, 5%);
         a {
             background-color: darken($sidebar-bg, 5%);
-            &:hover, &:active, &:focus {
-                background-color: darken($sidebar-bg, 10%);
+            @media (min-width: $screen-sm-min) {
+                &:hover, &:active, &:focus {
+                    background-color: darken($sidebar-bg, 10%);
+                }
             }
         }
     }
@@ -193,6 +200,8 @@ $sidebar-border-color: transparent;
 .navbar + .main-container-inner .sidebar {
     top: $navbar-height;
     .sidebar-outer {
-        height: calc(100vh - #{$navbar-height});
+        @media (min-width: $screen-sm-min) {
+            height: calc(100vh - #{$navbar-height});
+        }
     }
 }
